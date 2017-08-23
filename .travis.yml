@@ -1,0 +1,18 @@
+env:
+  global:
+  - COMPONENT=front
+  - TOOLS_DIR=$HOME/tools
+
+sudo: required
+
+before_deploy:
+- sudo pip install 'requests[security]' awscli
+- $TRAVIS_BUILD_DIR/tools/install_packages.sh $TOOLS_DIR
+- export PATH=$PATH:$TOOLS_DIR/bin
+
+deploy:
+- cd $TRAVIS_BUILD_DIR/packer
+- packer build packer.json | tee /tmp/packer.out
+- AMI=$(awk -F':' '/(eu|us|ap|sa)-(west|central|east|northeast|southeast)-(1|2): ami-/ {print $2}' /tmp/packer.out |  tr -d '[[:space:]]')
+- cd $TRAVIS_BUILD_DIR/webapp
+- terraform plan -var ami_id=$AMI && terraform apply -var ami_id=$AMI

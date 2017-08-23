@@ -12,5 +12,5 @@ server {
 }
 EOF
 git clone https://github.com/d2si/webapp.git /var/webapp
-#sed -i 's#everyone#${username}#' /var/webapp/index.html
+#sed -i 's#everybody#${username}#' /var/webapp/index.html
 systemctl restart nginx
