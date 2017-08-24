@@ -13,7 +13,7 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "______pretty_ami_name__________",
+    "ami_name": "______pretty_ami_name__________ {{ timestamp }}",
      "subnet_id": "______subnet__________",
      "type":"amazon-ebs",
      "vpc_id":"__________VPC_______________"
@@ -39,5 +39,3 @@
      }
  ]
 }
-
-
