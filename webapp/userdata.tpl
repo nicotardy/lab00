@@ -11,6 +11,8 @@ server {
     root /var/webapp;
 }
 EOF
+HOST=`hostname`
 git clone https://github.com/d2si/webapp.git /var/webapp
-#sed -i 's#everybody#${username}#' /var/webapp/index.html
+sed -i "s#everybody#${username} at $HOST#" /var/webapp/index.html
 systemctl restart nginx
+#service nginx restart
