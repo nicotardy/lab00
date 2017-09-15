@@ -11,5 +11,6 @@ before_deploy:
 - $TRAVIS_BUILD_DIR/tools/install_packages.sh $TOOLS_DIR
 
 deploy:
-- cd $TRAVIS_BUILD_DIR/tools
-- ./deploy.sh
+  - provider: script
+    skip_clean_up: true
+    script: cd $TRAVIS_BUILD_DIR/tools && ./deploy.sh
