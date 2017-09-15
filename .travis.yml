@@ -12,5 +12,5 @@ before_deploy:
 
 deploy:
   - provider: script
-    skip_clean_up: true
+    skip_cleanup: true
     script: cd $TRAVIS_BUILD_DIR/tools && ./deploy.sh
