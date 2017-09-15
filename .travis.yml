@@ -4,6 +4,8 @@ env:
   - TOOLS_DIR=$HOME/tools
   - PATH=$TOOLS_DIR/bin:$PATH
 
+language: bash
+
 sudo: required
 
 before_deploy:
