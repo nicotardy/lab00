@@ -39,6 +39,7 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
+/*
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -49,6 +50,7 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+*/
 
 data "template_file" "usr_data" {
   template = "${file("${path.module}/userdata.tpl")}"
@@ -103,7 +105,8 @@ resource "aws_elb" "web_elb" {
 
 resource "aws_launch_configuration" "as_conf" {
   name_prefix                 = "web_config"
-  image_id                    = "${data.aws_ami.ubuntu.id}"
+#  image_id                    = "${data.aws_ami.ubuntu.id}"
+  image_id                    = "${var.ami_id}"
   instance_type               = "t2.micro"
   security_groups             = ["${aws_security_group.allow_all.id}"]
   key_name                    = "${aws_key_pair.web_instance_key_pair.key_name}"
