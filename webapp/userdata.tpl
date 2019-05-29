@@ -12,7 +12,7 @@ server {
 }
 EOF
 HOST=`hostname`
-git clone https://github.com/d2si/webapp.git /var/webapp
+git clone https://github.com/nicotardy/webapp.git /var/webapp
 sed -i "s#everybody#${username} at $HOST#" /var/webapp/index.html
 service nginx restart
 #systemctl restart nginx
