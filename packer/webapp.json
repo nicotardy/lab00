@@ -13,10 +13,10 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "______pretty_ami_name__________ {{ timestamp }}",
-     "subnet_id": "______subnet__________",
+    "ami_name": "nta_ami {{ timestamp }}",
+     "subnet_id": "subnet-0bcfd8100c0d3a40c",
      "type":"amazon-ebs",
-     "vpc_id":"__________VPC_______________",
+     "vpc_id":"vpc-026d3fcc064bad9b4",
      "associate_public_ip_address":true
   }],
   "provisioners" :[

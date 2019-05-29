@@ -13,5 +13,5 @@ EOF
 mkdir /var/webapp
 cp /tmp/index.html /var/webapp/
 HOST=`hostname`
-sed -i "s#everybody#___MYUSER___ at $HOST#" /var/webapp/index.html
+sed -i "s#everybody#NicoBuildOnPacker at $HOST#" /var/webapp/index.html
 systemctl restart nginx
