@@ -18,8 +18,8 @@ resource "aws_security_group" "allow_all" {
   vpc_id      = "${data.terraform_remote_state.rs-vpc.vpc_id}"
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
