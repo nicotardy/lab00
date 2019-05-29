@@ -43,14 +43,13 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-/*data "template_file" "YYYY" {
+data "template_file" "usr_data" {
   template = "${file("${path.module}/userdata.tpl")}"
+
   vars {
-    username = "..."
+    username = "${var.username}"
   }
 }
-*/
-
 
 # yannick lorenzati 
 # julien simon 
