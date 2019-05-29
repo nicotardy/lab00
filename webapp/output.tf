@@ -15,7 +15,3 @@ output "public_ip" {
 output "dns_name" {
   value = "${aws_elb.web_elb.dns_name}"
 }
-
-output "public_ips" {
-  value = "${aws_autoscaling_group.auto_scl_grp.target_group_arns}"
-}

@@ -52,6 +52,19 @@ data "aws_ami" "ubuntu" {
 }
 */
 
+data "aws_ami" "packer_nta_ami" {
+  most_recent = true
+
+  filter {
+    name = "name"
+
+    #    values = ["nta_ami*"] # name AMI
+    values = ["${var.ami_filter}"] # name AMI
+  }
+
+  owners = ["self"]
+}
+
 data "template_file" "usr_data" {
   template = "${file("${path.module}/userdata.tpl")}"
 
@@ -104,10 +117,14 @@ resource "aws_elb" "web_elb" {
 }
 
 resource "aws_launch_configuration" "as_conf" {
-  name_prefix                 = "web_config"
-#  image_id                    = "${data.aws_ami.ubuntu.id}"
-  image_id                    = "${var.ami_id}"
-  instance_type               = "t2.micro"
+  name_prefix = "web_config"
+
+  #  image_id                    = "${data.aws_ami.ubuntu.id}"
+  #  image_id                    = "${var.ami_id}"
+  image_id = "${data.aws_ami.packer_nta_ami.image_id}"
+
+  instance_type = "t2.micro"
+
   security_groups             = ["${aws_security_group.allow_all.id}"]
   key_name                    = "${aws_key_pair.web_instance_key_pair.key_name}"
   user_data                   = "${data.template_file.usr_data.rendered}"
