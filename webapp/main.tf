@@ -51,6 +51,19 @@ data "template_file" "usr_data" {
   }
 }
 
+
+resource "aws_instance" "web" {
+  ami = "${data.aws_ami.ubuntu.id}"
+  instance_type = "t2.micro"
+  key_name = "=> Manual import"
+  vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
+  user_data = "${data.template_file.usr_data.rendered}"
+  subnet_id = "${data.terraform_remote_state.rs-vpc.subnet_id[0]}"
+  tags {
+    Name = "HelloWorld"
+  }
+}
+
 # yannick lorenzati 
 # julien simon 
 # thomas boutri
